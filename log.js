@@ -4,7 +4,8 @@ const log = {}
 
 // Pretty print object
 log.pp = (obj) => {
-  return JSON.stringify(obj, null, 2).replace(/\\"/g, '')
+  const json = JSON.stringify(obj, null, 2)
+  return json ? json.replace(/\\"/g, '') : json
 }
 
 // Print request info
