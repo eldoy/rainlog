@@ -2,7 +2,7 @@
 
 # Rainlog Node.js Logger with Color support
 
-This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects (no more need for JSON.stringify), and also has the excellent [colors](https://github.com/Marak/colors.js) library built in.
+This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects (no more need for JSON.stringify), and also has the excellent [chalk](https://github.com/chalk/chalk) library built in.
 
 You can also log to file by setting it up in the configuration.
 
@@ -29,11 +29,6 @@ log.get.info.reset()
 
 // Reset config for all loggers
 log.reset()
-
-// Colored output
-// See the 'colors' module for all available colors
-log.info('hello world'.green)
-log.info('hello world'.rainbow)
 
 // Write formatted text
 log.info('%s %d %o', 'hello', 2020, { world: 'amazing' })
@@ -73,8 +68,12 @@ Use the 'set' function to configure your logger. Files are not written to by def
 {
   // When quiet is true there will be no output to console
   quiet: process.env.NODE_ENV === 'production',
+
   // Set the file option to a file name to also write to file
-  file: false
+  file: false,
+
+  // Set colors and modifers, see the 'chalk' module for options
+  style: 'green.bold.underline'
 }
 
 // Create the Rainlog instance

@@ -45,18 +45,18 @@ describe('Log', () => {
 
   it('should print normally', () => {
     log.p('hello')
-    expect(output).toBe('hello')
+    expect(output).toMatch('hello')
   })
 
   it('should print normally with substitution', () => {
     log.p('hello %s %o', 'hello', { hello: 'world' })
-    expect(output).toBe("hello hello { hello: 'world' }")
+    expect(output).toMatch("hello hello { hello: 'world' }")
   })
 
   it('should write to file', (done) => {
     log.set({ file: LOGFILE })
     log.p('hello')
-    expect(output).toBe('hello')
+    expect(output).toMatch('hello')
     setTimeout(() => {
       expect(fs.existsSync(LOGFILE)).toBe(true)
       const r = fs.readFileSync(LOGFILE, 'utf-8')

@@ -38,12 +38,12 @@ describe('Rainlog', () => {
 
   it('should let loggers be callable', () => {
     log.info('info')
-    expect(output).toEqual('info')
+    expect(output).toMatch('info')
     log.error('error')
-    expect(output).toEqual('error')
+    expect(output).toMatch('error')
   })
 
-  it('should let loggers be callable', () => {
+  it('should let file writers be callable', () => {
     log.$info('info')
     expect(output).toBeUndefined()
     log.$error('error')
@@ -53,8 +53,10 @@ describe('Rainlog', () => {
   it('should let loggers instances be available', () => {
     expect(log.get.info).toBeDefined()
     expect(log.get.info.constructor).toEqual(Logger)
+    expect(log.get.info.config.style).toEqual('green')
     expect(log.get.error).toBeDefined()
     expect(log.get.error.constructor).toEqual(Logger)
+    expect(log.get.error.config.style).toEqual('red')
   })
 
   it('should add loggers', () => {

@@ -1,6 +1,9 @@
 const Logger = require('./lib/logger')
 
-const DEFAULT_LOGGERS = ['info', 'error']
+const DEFAULT_LOGGERS = {
+  'info': { style: 'green' },
+  'error': { style: 'red' }
+}
 const ILLEGAL_NAMES = ['get', 'reset', 'add']
 
 class Rainlog {
@@ -10,13 +13,13 @@ class Rainlog {
   }
 
   initLoggers (config) {
-    for (const name of DEFAULT_LOGGERS) {
-      this.buildLogger(name, config)
+    for (const name in DEFAULT_LOGGERS) {
+      this.buildLogger(name, { ...DEFAULT_LOGGERS[name], ...config })
     }
   }
 
   buildLogger (name, config) {
-    this.get[name] = new Logger(config)
+    this.get[name] = new Logger(name, config)
     this[name] = (...a) => {
       this.get[name].p(...a)
     }
@@ -27,7 +30,7 @@ class Rainlog {
 
   reset () {
     for (const name in this.get) {
-      this.get[name].reset()
+      this.get[name].reset(DEFAULT_LOGGERS[name])
     }
   }
 
