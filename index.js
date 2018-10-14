@@ -2,7 +2,7 @@ const Logger = require('./lib/logger')
 
 const DEFAULT_LOGGERS = {
   'info': { style: 'green' },
-  'error': { style: 'red' }
+  'err': { style: 'red' }
 }
 const ILLEGAL_NAMES = ['get', 'reset', 'add']
 

@@ -33,20 +33,20 @@ describe('Rainlog', () => {
     const count = Object.keys(log.get).length
     expect(count).toEqual(2)
     expect(log.get.info).toBeDefined()
-    expect(log.get.error).toBeDefined()
+    expect(log.get.err).toBeDefined()
   })
 
   it('should let loggers be callable', () => {
     log.info('info')
     expect(output).toMatch('info')
-    log.error('error')
+    log.err('error')
     expect(output).toMatch('error')
   })
 
   it('should let file writers be callable', () => {
     log.$info('info')
     expect(output).toBeUndefined()
-    log.$error('error')
+    log.$err('error')
     expect(output).toBeUndefined()
   })
 
@@ -54,9 +54,9 @@ describe('Rainlog', () => {
     expect(log.get.info).toBeDefined()
     expect(log.get.info.constructor).toEqual(Logger)
     expect(log.get.info.config.style).toEqual('green')
-    expect(log.get.error).toBeDefined()
-    expect(log.get.error.constructor).toEqual(Logger)
-    expect(log.get.error.config.style).toEqual('red')
+    expect(log.get.err).toBeDefined()
+    expect(log.get.err.constructor).toEqual(Logger)
+    expect(log.get.err.config.style).toEqual('red')
   })
 
   it('should add loggers', () => {

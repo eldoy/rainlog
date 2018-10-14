@@ -10,7 +10,7 @@ You can also log to file by setting it up in the configuration.
 ```npm i rainlog``` or ```yarn add rainlog```
 
 ### USAGE
-By default 2 loggers are included: *info* and *error*. You can add extra loggers as you please.
+By default 2 loggers are included: *info* and *err*. You can add extra loggers as you please.
 ```javascript
 const Rainlog = require('rainlog')
 const log = new Rainlog()
@@ -19,10 +19,10 @@ const log = new Rainlog()
 log.info('hello world')
 
 // Write to console.log using the 'error' logger
-log.error('hello world')
+log.err('hello world')
 
 // Update config
-log.get.error.set({ file: 'error.txt' })
+log.get.err.set({ file: 'error.txt' })
 
 // Reset config for a single logger
 log.get.info.reset()
@@ -45,7 +45,7 @@ log.warn('this logger is on fire')
 // Create multiple logs if you want
 access = new Rainlog()
 access.info('user accessed')
-access.error('user not found')
+access.err('user not found')
 ```
 
 ### FORMATTING
@@ -84,7 +84,7 @@ const log = new Rainlog({ quiet: true })
 
 // Use the set function to configure your logger
 log.get.info.set({ file: 'info.txt' })
-log.get.error.set({ file: 'error.txt' })
+log.get.err.set({ file: 'error.txt' })
 ```
 
 ### LICENSE
