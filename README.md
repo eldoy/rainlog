@@ -52,7 +52,7 @@ Here are the formatting options, taken from the [Node.js docs](https://nodejs.or
 Use the 'set' function to configure your logger, or pass the config to the constuctor.
 ```javascript
 // Pass config to constructor
-const log = new (require('rainlog'))({
+const log = new Rainlog({
   // When quiet is true there will be no output to console
   quiet: process.env.NODE_ENV === 'production',
   // Set file to a file name to also write to file
@@ -60,7 +60,7 @@ const log = new (require('rainlog'))({
 })
 
 // Use the set function to configure your logger
-const log = new (require('rainlog'))()
+const log = new Rainlog()
 log.set({ file: 'log.txt' })
 ```
 
