@@ -1,6 +1,7 @@
 const { format } = require('util')
 const fs = require('fs')
-const log = new (require('../index.js'))()
+const Logger = require('../lib/logger.js')
+const log = new Logger()
 let output
 console['log'] = jest.fn((...input) => {
   output = format(...input)
@@ -14,6 +15,7 @@ const rmfile = () => {
 }
 
 beforeEach(() => {
+  output = undefined
   log.reset()
   rmfile()
 })

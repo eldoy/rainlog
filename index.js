@@ -1,39 +1,41 @@
-const util = require('util')
-const fs = require('fs')
-require('colors')
+const Logger = require('./lib/logger')
 
-const DEFAULT_CONFIG = {
-  quiet: process.env.NODE_ENV === 'production',
-  file: false
-}
+const DEFAULT_LOGGERS = ['info', 'error']
+const ILLEGAL_NAMES = ['get', 'reset', 'add']
 
 class Rainlog {
   constructor () {
-    this.reset()
+    this.get = {}
+    this.initLoggers()
+  }
+
+  initLoggers () {
+    for (const name of DEFAULT_LOGGERS) {
+      this.buildLogger(name)
+    }
+  }
+
+  buildLogger (name, config) {
+    this.get[name] = new Logger(config)
+    this[name] = (...a) => {
+      this.get[name].p(...a)
+    }
+    this[`$${name}`] = (...a) => {
+      this.get[name].f(...a)
+    }
   }
 
   reset () {
-    this.config = DEFAULT_CONFIG
-  }
-
-  set (config) {
-    this.config = { ...this.config, ...config }
-  }
-
-  p (...a) {
-    if (!this.config.quiet) {
-      console.log(util.format(...a))
+    for (const name in this.get) {
+      this.get[name].reset()
     }
-    this.f(...a)
   }
 
-  f (...a) {
-    if (this.config.file) {
-      if (!this.file) {
-        this.file = fs.createWriteStream(this.config.file, { flags: 'a' })
-      }
-      this.file.write(util.format(...a) + '\n')
+  add (name, config) {
+    if (ILLEGAL_NAMES.includes(name)) {
+      throw new Error(`'${name}' is not a legal name for loggers`)
     }
+    this.buildLogger(name, config)
   }
 }
 
