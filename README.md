@@ -10,31 +10,47 @@ You can also log to file by setting it up in the configuration.
 ```npm i rainlog``` or ```yarn add rainlog```
 
 ### USAGE
+By default 2 loggers are included: *info* and *error*. You can add extra loggers as you please.
 ```javascript
 const Rainlog = require('rainlog')
 const log = new Rainlog()
 
-// Write to console.log
-log.p('hello world')
+// Write to console.log using the 'info' logger
+log.info('hello world')
+
+// Write to console.log using the 'error' logger
+log.error('hello world')
+
+// Update config
+log.get.error.set({ file: 'error.txt' })
+
+// Reset config for a single logger
+log.get.info.reset()
+
+// Reset config for all loggers
+log.reset()
 
 // Colored output
 // See the 'colors' module for all available colors
-log.p('hello world'.green)
-log.p('hello world'.rainbow)
+log.info('hello world'.green)
+log.info('hello world'.rainbow)
 
 // Write formatted text
-log.p('%s %d %o', 'hello', 2020, { world: 'amazing' })
+log.info('%s %d %o', 'hello', 2020, { world: 'amazing' })
 // Output: hello 2020 { world: 'amazing' }
 
-// Use the 'f' function to write only to file
-log.f('hello')
+// Use the $ function to write to file
+log.$info('hello')
+
+// Add a logger to the existing log, pass name and config
+// The new logger is instantly available as 'log.warn'
+log.add('warn', { quiet: true })
+log.warn('this logger is on fire')
 
 // Create multiple logs if you want
 access = new Rainlog()
-access.p('user accessed')
-
-error = new Rainlog()
-error.p('error!')
+access.info('user accessed')
+access.error('user not found')
 ```
 
 ### FORMATTING
@@ -51,19 +67,25 @@ Here are the formatting options, taken from the [Node.js docs](https://nodejs.or
 ```
 
 ### CONFIGURATION
-Pass the config to the constructor or use the 'set' function to configure your logger.
+Use the 'set' function to configure your logger. Files are not written to by default.
 ```javascript
-// Pass config to constructor
-const log = new Rainlog({
+// The default configuration looks like this for all loggers
+{
   // When quiet is true there will be no output to console
   quiet: process.env.NODE_ENV === 'production',
   // Set the file option to a file name to also write to file
   file: false
-})
+}
+
+// Create the Rainlog instance
+const log = new Rainlog()
+
+// Optionally pass the config to the constructor
+const log = new Rainlog({ quiet: true })
 
 // Use the set function to configure your logger
-const log = new Rainlog()
-log.set({ file: 'log.txt' })
+log.get.info.set({ file: 'info.txt' })
+log.get.error.set({ file: 'error.txt' })
 ```
 
 ### LICENSE

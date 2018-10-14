@@ -4,14 +4,14 @@ const DEFAULT_LOGGERS = ['info', 'error']
 const ILLEGAL_NAMES = ['get', 'reset', 'add']
 
 class Rainlog {
-  constructor () {
+  constructor (config) {
     this.get = {}
-    this.initLoggers()
+    this.initLoggers(config)
   }
 
-  initLoggers () {
+  initLoggers (config) {
     for (const name of DEFAULT_LOGGERS) {
-      this.buildLogger(name)
+      this.buildLogger(name, config)
     }
   }
 
