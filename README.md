@@ -1,4 +1,4 @@
-![Rainlog logo](https://7ino.s3.amazonaws.com/1539491802415_rainlog-logo.png)
+![Rainlog logo](https://s3.amazonaws.com/7ino/1539491197_rainlog-logo.png)
 
 # Rainlog Node.js Logger with Color support
 
