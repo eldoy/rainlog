@@ -25,6 +25,9 @@
     "node",
     "logger",
     "color",
+    "format",
+    "util",
+    "file",
     "production"
   ]
 }
