@@ -1,4 +1,4 @@
-# Rainlog Logger for Node.js with color support
+# Rainlog Node.js Logger with Color support
 
 This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects (no more need for JSON.stringify), and also have the excellent [colors](https://github.com/Marak/colors.js) library built in.
 
@@ -24,15 +24,15 @@ log.p('hello world'.rainbow)
 log.p('%s %d %o', 'hello', 2020, { world: 'amazing' })
 // Output: hello 2020 { world: 'amazing' }
 
+// Use the 'f' function to write only to file
+log.f('hello')
+
 // Create multiple logs if you want
 access = new Rainlog()
 access.p('user accessed')
 
 error = new Rainlog()
 error.p('error!')
-
-// Use the 'f' function to write only to file
-log.f('hello')
 ```
 
 ### FORMATTING
@@ -49,13 +49,13 @@ Here are the formatting options, taken from the [Node.js docs](https://nodejs.or
 ```
 
 ### CONFIGURATION
-Use the 'set' function to configure your logger, or pass the config to the constuctor.
+Pass the config to the constructor or use the 'set' function to configure your logger.
 ```javascript
 // Pass config to constructor
 const log = new Rainlog({
   // When quiet is true there will be no output to console
   quiet: process.env.NODE_ENV === 'production',
-  // Set file to a file name to also write to file
+  // Set the file option to a file name to also write to file
   file: false
 })
 
