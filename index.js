@@ -21,15 +21,20 @@ class Rainlog {
   }
 
   p (...a) {
-    const out = util.format(...a)
-    console.log(out)
+    if (!this.config.quiet) {
+      console.log(util.format(...a))
+    }
+    this.f(...a)
+  }
+
+  f (...a) {
     if (this.config.file) {
       if (!this.file) {
         this.file = fs.createWriteStream(this.config.file, { flags: 'a' })
       }
-      this.file.write(out + '\n')
+      this.file.write(util.format(...a) + '\n')
     }
   }
 }
 
-module.exports = new Rainlog()
+module.exports = Rainlog

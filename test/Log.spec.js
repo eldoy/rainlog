@@ -1,6 +1,6 @@
 const { format } = require('util')
 const fs = require('fs')
-const log = require('../index.js')
+const log = new (require('../index.js'))()
 let output
 console['log'] = jest.fn((...input) => {
   output = format(...input)
@@ -9,7 +9,7 @@ const LOGFILE = 'log.txt'
 
 const rmfile = () => {
   if (fs.existsSync(LOGFILE)) {
-    fs.unlink(LOGFILE)
+    fs.unlinkSync(LOGFILE)
   }
 }
 
