@@ -1,3 +1,5 @@
+![Rainlog logo](https://7ino.s3.amazonaws.com/1539491802415_rainlog-logo.png)
+
 # Rainlog Node.js Logger with Color support
 
 This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects (no more need for JSON.stringify), and also has the excellent [colors](https://github.com/Marak/colors.js) library built in.
