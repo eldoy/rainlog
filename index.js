@@ -28,17 +28,23 @@ class Rainlog {
     }
   }
 
+  add (name, config) {
+    if (ILLEGAL_NAMES.includes(name)) {
+      throw new Error(`'${name}' is not a legal name for loggers`)
+    }
+    this.buildLogger(name, config)
+  }
+
   reset () {
     for (const name in this.get) {
       this.get[name].reset(DEFAULT_LOGGERS[name])
     }
   }
 
-  add (name, config) {
-    if (ILLEGAL_NAMES.includes(name)) {
-      throw new Error(`'${name}' is not a legal name for loggers`)
+  set (config) {
+    for (const name in this.get) {
+      this.get[name].set(config)
     }
-    this.buildLogger(name, config)
   }
 }
 

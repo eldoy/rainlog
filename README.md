@@ -21,8 +21,11 @@ log.info('hello world')
 // Write to console.log using the 'error' logger
 log.err('hello world')
 
-// Update config
+// Update config for a single logger
 log.get.err.set({ file: 'error.txt' })
+
+// Update config for all loggers
+log.set({ quiet: true })
 
 // Reset config for a single logger
 log.get.info.reset()

@@ -72,4 +72,12 @@ describe('Rainlog', () => {
       expect(err.message).toEqual("'add' is not a legal name for loggers")
     }
   })
+
+  it('should set config for all loggers', () => {
+    expect(log.get.info.config.quiet).toBe(false)
+    expect(log.get.err.config.quiet).toBe(false)
+    log.set({ quiet: true })
+    expect(log.get.info.config.quiet).toBe(true)
+    expect(log.get.err.config.quiet).toBe(true)
+  })
 })

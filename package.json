@@ -1,6 +1,6 @@
 {
   "name": "rainlog",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Advanced command line logger with color support",
   "main": "index.js",
   "directories": {
