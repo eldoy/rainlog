@@ -1,13 +1,11 @@
-![Rainlog logo](https://s3.amazonaws.com/7ino/1539491283_rainlog-logo.png)
+# Rainlog Node.js Logger
 
-# Rainlog Node.js Logger with Color support
-
-This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects (no more need for JSON.stringify), and also has the excellent [chalk](https://github.com/chalk/chalk) library built in.
+This versatile logger is an advanced ```console.log``` for your applications. It uses the built in ```util.format``` to make it easy to output strings and objects.
 
 You can also log to file by setting it up in the configuration.
 
 ### INSTALL
-```npm i rainlog``` or ```yarn add rainlog```
+```npm i rainlog```
 
 ### USAGE
 By default 2 loggers are included: *info* and *err*. You can add extra loggers as you please.

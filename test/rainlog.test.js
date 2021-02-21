@@ -1,7 +1,7 @@
 const { format } = require('util')
 const fs = require('fs')
 const Rainlog = require('../index')
-const Logger = require('../lib/logger')
+const Logger = require('../lib/logger.js')
 const log = new Rainlog()
 
 const FILES = {
